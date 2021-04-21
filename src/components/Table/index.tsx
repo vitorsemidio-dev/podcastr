@@ -22,38 +22,42 @@ export function Table() {
 	return (
 		<>
 			<TableContainer>
-				<tr>
-					<th colSpan={1}>Podcast</th>
-					<th>Integrantes</th>
-					<th>Data</th>
-					<th>Duração</th>
-					<th></th>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<img
-								src='https://storage.googleapis.com/golden-wind/nextlevelweek/05-podcastr/funcional.jpg'
-								alt='Thumb'
-							/>
-							<h3>A vida é boa</h3>
-						</div>
-					</td>
-					<td>Integrantes</td>
-					<td>{publishedDate}</td>
-					<td>{duration}</td>
-					<td>
-						<Button>
-							<img
-								src='/icons/play-green.svg'
-								alt={
-									'Tocar Podcast ' +
-									'Faladev #30 | A importância da contribuição em Open Source'
-								}
-							/>
-						</Button>
-					</td>
-				</tr>
+				<thead>
+					<tr>
+						<th colSpan={1}>Podcast</th>
+						<th>Integrantes</th>
+						<th>Data</th>
+						<th>Duração</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<div>
+								<img
+									src='https://storage.googleapis.com/golden-wind/nextlevelweek/05-podcastr/funcional.jpg'
+									alt='Thumb'
+								/>
+								<h3>A vida é boa</h3>
+							</div>
+						</td>
+						<td>Integrantes</td>
+						<td>{publishedDate}</td>
+						<td>{duration}</td>
+						<td>
+							<Button>
+								<img
+									src='/icons/play-green.svg'
+									alt={
+										'Tocar Podcast ' +
+										'Faladev #30 | A importância da contribuição em Open Source'
+									}
+								/>
+							</Button>
+						</td>
+					</tr>
+				</tbody>
 			</TableContainer>
 		</>
 	);

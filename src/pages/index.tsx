@@ -1,19 +1,32 @@
 /** @format */
 
+import { useMemo } from 'react';
+
 import { Card } from '../components/Card';
 import { Table } from '../components/Table';
+
+import { Episode } from '../models/episode';
 
 import { HomeWrapper } from '../styles/home-wrapper';
 import { ReleaseWrapper } from '../styles/release-wrapper';
 
-export default function Home({ episodes }: { episodes: any }) {
+interface HomeProps {
+	episodes: Array<Episode>;
+}
+
+export default function Home({ episodes }: HomeProps) {
+	const lastTwo = useMemo(() => {
+		return [episodes[0], episodes[1]];
+	}, []);
+
 	return (
 		<HomeWrapper>
 			<section>
 				<h2>Últimos Lançamentos</h2>
 				<ReleaseWrapper>
-					<Card />
-					<Card />
+					{lastTwo.map((episode) => (
+						<Card key={episode.id} episode={episode} />
+					))}
 				</ReleaseWrapper>
 			</section>
 

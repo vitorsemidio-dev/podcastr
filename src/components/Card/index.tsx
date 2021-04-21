@@ -1,8 +1,13 @@
 /** @format */
 
-import { useState } from 'react';
-import { addSeconds, format } from 'date-fns';
-import ptBr from 'date-fns/locale/pt-BR';
+import { useMemo, FC } from 'react';
+
+import {
+	convertSeconds2Hours,
+	formatDateDayMonthYear,
+} from '../../utils/formatDate';
+
+import { Episode } from '../../models/episode';
 
 import {
 	CardContainer,
@@ -12,32 +17,31 @@ import {
 	CardPlayButton,
 } from './styles';
 
-export function Card() {
-	const [currentDate, setCurrentDate] = useState(() => {
-		const date = format(new Date(), 'd MMM yy', {
-			locale: ptBr,
-		});
+interface CardProps {
+	episode: Episode;
+}
+
+export const Card: FC<CardProps> = ({ episode }) => {
+	const currentDate = useMemo(() => {
+		const publishedDate = new Date(episode.published_at);
+		const date = formatDateDayMonthYear(publishedDate);
 
 		return date;
-	});
+	}, []);
 
-	const [duration, setDuration] = useState(() => {
-		const begin = new Date(0).setHours(0);
-		const helperDate = addSeconds(begin, 3981);
-		return format(helperDate, 'h:mm:ss');
-	});
+	const duration = useMemo(() => {
+		return convertSeconds2Hours(episode?.file?.duration || 0);
+	}, []);
 
 	return (
 		<CardContainer>
 			<CardThumbnail
-				src='https://storage.googleapis.com/golden-wind/nextlevelweek/05-podcastr/opensource.jpg'
-				alt='Thumbnail Podcast'
+				src={episode.thumbnail}
+				alt={'Thumb podcast ' + episode.title}
 			/>
-			<CardTitle>
-				Faladev #30 | A importância da contribuição em Open Source
-			</CardTitle>
+			<CardTitle>{episode.title}</CardTitle>
 			<CardExtraInfo>
-				<p>Diego e Richard</p>
+				<p>{episode.members}</p>
 				<time dateTime='2021-20-04'>
 					{currentDate} <span className='dot'></span> {duration}
 				</time>
@@ -45,12 +49,9 @@ export function Card() {
 			<CardPlayButton>
 				<img
 					src='/icons/play-green.svg'
-					alt={
-						'Tocar Podcast ' +
-						'Faladev #30 | A importância da contribuição em Open Source'
-					}
+					alt={'Tocar Podcast ' + episode.title}
 				/>
 			</CardPlayButton>
 		</CardContainer>
 	);
-}
+};
