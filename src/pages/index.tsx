@@ -1,6 +1,7 @@
 /** @format */
 
 import { Card } from '../components/Card';
+import { Table } from '../components/Table';
 
 import { HomeWrapper } from '../styles/home-wrapper';
 import { ReleaseWrapper } from '../styles/release-wrapper';
@@ -14,6 +15,12 @@ export default function Home({ episodes }: { episodes: any }) {
 					<Card />
 					<Card />
 				</ReleaseWrapper>
+			</section>
+
+			<section>
+				<h2>Todos os Episódios</h2>
+
+				<Table />
 			</section>
 		</HomeWrapper>
 	);

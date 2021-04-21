@@ -9,4 +9,8 @@ export const HomeWrapper = styled.div`
 	h2 {
 		margin-bottom: 1.5rem;
 	}
+
+	section + section {
+		margin-top: 3rem;
+	}
 `;
