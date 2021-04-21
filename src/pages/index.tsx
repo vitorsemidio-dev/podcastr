@@ -1,11 +1,21 @@
 /** @format */
 
+import { Card } from '../components/Card';
+
+import { HomeWrapper } from '../styles/home-wrapper';
+import { ReleaseWrapper } from '../styles/release-wrapper';
+
 export default function Home({ episodes }: { episodes: any }) {
 	return (
-		<>
-			<h1>Home</h1>
-			<p>{JSON.stringify(episodes)}</p>
-		</>
+		<HomeWrapper>
+			<section>
+				<h2>Últimos Lançamentos</h2>
+				<ReleaseWrapper>
+					<Card />
+					<Card />
+				</ReleaseWrapper>
+			</section>
+		</HomeWrapper>
 	);
 }
 
