@@ -33,7 +33,7 @@ export default function Home({ episodes }: HomeProps) {
 			<section>
 				<h2>Todos os Episódios</h2>
 
-				<Table />
+				<Table episodes={episodes} />
 			</section>
 		</HomeWrapper>
 	);

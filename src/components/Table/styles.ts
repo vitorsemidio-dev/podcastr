@@ -7,6 +7,20 @@ export const TableContainer = styled.table`
 	width: 100%;
 	text-align: left;
 
+	th:nth-child(1) {
+		width: 55%;
+	}
+	th:nth-child(2) {
+		width: 20%;
+	}
+	th:nth-child(3),
+	th:nth-child(4) {
+		width: 10%;
+	}
+	th:nth-child(5) {
+		width: 5%;
+	}
+
 	td {
 		font-size: 0.75rem;
 	}

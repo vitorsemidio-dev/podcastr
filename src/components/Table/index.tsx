@@ -1,6 +1,7 @@
 /** @format */
 
-import { useMemo } from 'react';
+import { useMemo, FC } from 'react';
+import { Episode } from '../../models/episode';
 
 import {
 	formatDateDayMonthYear,
@@ -10,21 +11,29 @@ import { Button } from '../Button';
 
 import { TableContainer } from './styles';
 
-export function Table() {
-	const publishedDate = useMemo(() => {
-		const dateFormatted = formatDateDayMonthYear(new Date());
-		return dateFormatted;
-	}, []);
+interface TableProps {
+	episodes: Array<Episode>;
+}
 
-	const duration = useMemo(() => {
-		return convertSeconds2Hours(3981);
-	}, []);
+export const Table: FC<TableProps> = ({ episodes }) => {
+	const episodesFormatted = useMemo(() => {
+		const episodesHelper = episodes?.map((episode) => {
+			const publishedDate = new Date(episode.published_at);
+			return {
+				...episode,
+				durationFormatted: convertSeconds2Hours(episode.file.duration),
+				publishedAtFormatted: formatDateDayMonthYear(publishedDate),
+			};
+		});
+		return episodesHelper;
+	}, [episodes]);
+
 	return (
 		<>
 			<TableContainer>
 				<thead>
 					<tr>
-						<th colSpan={1}>Podcast</th>
+						<th>Podcast</th>
 						<th>Integrantes</th>
 						<th>Data</th>
 						<th>Duração</th>
@@ -32,33 +41,38 @@ export function Table() {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							<div>
-								<img
-									src='https://storage.googleapis.com/golden-wind/nextlevelweek/05-podcastr/funcional.jpg'
-									alt='Thumb'
-								/>
-								<h3>A vida é boa</h3>
-							</div>
-						</td>
-						<td>Integrantes</td>
-						<td>{publishedDate}</td>
-						<td>{duration}</td>
-						<td>
-							<Button>
-								<img
-									src='/icons/play-green.svg'
-									alt={
-										'Tocar Podcast ' +
-										'Faladev #30 | A importância da contribuição em Open Source'
-									}
-								/>
-							</Button>
-						</td>
-					</tr>
+					{episodesFormatted?.map(
+						({
+							id,
+							members,
+							publishedAtFormatted,
+							durationFormatted,
+							title,
+							thumbnail,
+						}) => (
+							<tr key={id}>
+								<td>
+									<div>
+										<img src={thumbnail} alt={'Thumbnail' + title} />
+										<h3>{title}</h3>
+									</div>
+								</td>
+								<td>{members}</td>
+								<td>{publishedAtFormatted}</td>
+								<td>{durationFormatted}</td>
+								<td>
+									<Button>
+										<img
+											src='/icons/play-green.svg'
+											alt={'Tocar Podcast ' + title}
+										/>
+									</Button>
+								</td>
+							</tr>
+						),
+					)}
 				</tbody>
 			</TableContainer>
 		</>
 	);
-}
+};
