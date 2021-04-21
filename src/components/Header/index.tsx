@@ -1,10 +1,12 @@
 /** @format */
 
+import { FC } from 'react';
+
 import { formatDate } from '../../utils/formatDate';
 
 import { HeaderContainer, HeaderText, HeaderDate } from './styles';
 
-export function Header() {
+export const Header: FC = () => {
 	const currentDate = formatDate(new Date());
 
 	return (
@@ -12,8 +14,8 @@ export function Header() {
 			<img src='/icons/logo.svg' alt='Logo Podcastr' />
 			<HeaderText>O melhor para você ouvir, sempre</HeaderText>
 			<HeaderDate>
-				<time dateTime={new Date().toString()}>{currentDate}</time>
+				<time dateTime={currentDate}>{currentDate}</time>
 			</HeaderDate>
 		</HeaderContainer>
 	);
-}
+};

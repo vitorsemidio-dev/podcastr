@@ -1,5 +1,7 @@
 /** @format */
 
+import { FC } from 'react';
+
 import {
 	PlayerContainer,
 	PlayerHeader,
@@ -8,7 +10,7 @@ import {
 	PlayerButtonContainer,
 } from './styles';
 
-export function Player() {
+export const Player: FC = () => {
 	return (
 		<PlayerContainer>
 			<PlayerHeader>
@@ -49,4 +51,4 @@ export function Player() {
 			</footer>
 		</PlayerContainer>
 	);
-}
+};
