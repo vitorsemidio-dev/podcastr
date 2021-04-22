@@ -25,6 +25,8 @@ export const GlobalStyles = createGlobalStyle`
     --purple-400: #9164fa;
     --purple-500: #8257e5;
     --purple-800: #6f48c9;
+
+    --header-height: 6.5rem;
   }
 
   @font-face {

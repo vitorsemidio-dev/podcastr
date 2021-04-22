@@ -3,52 +3,57 @@
 import styled from 'styled-components';
 
 export const CardContainer = styled.div`
-	max-width: 28rem;
+	position: relative;
+
 	width: 100%;
-	padding: 1rem 2rem 1rem 1rem;
+	padding: 1.25rem;
 	border-radius: 1.5rem;
+	border: 1px solid var(--gray-100);
 	background: var(--white);
 
-	display: grid;
-	gap: 1rem;
-	grid-template-columns: repeat(6, 1fr);
-	grid-template-areas:
-		'thumb thumb title title title title title title'
-		'thumb thumb extra extra extra extra extra button';
+	display: flex;
+	align-items: center;
 `;
 
 export const CardThumbnail = styled.img`
-	grid-area: thumb;
 	height: 6rem;
 	width: 6rem;
 	border-radius: 1rem;
 	object-fit: cover;
 `;
 
-export const CardTitle = styled.h3`
-	grid-area: title;
-	font-size: 1rem;
-	line-height: 1.25rem;
+export const CardDetailsContainer = styled.div`
+	flex: 1;
+	margin-left: 1rem;
 
-	max-width: 100%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-`;
+	a {
+		display: block;
+		color: var(--gray-800);
+		text-decoration: none;
 
-export const CardPeople = styled.p``;
-
-export const CardTimeContainer = styled.div``;
-
-export const CardExtraInfo = styled.div`
-	grid-area: extra;
-	font-weight: 400;
-	font-family: 'Inter', sans-serif;
-	font-size: 0.875rem;
-
-	> p,
-	> time {
+		font-size: 1rem;
 		line-height: 1.25rem;
+
+		:hover {
+			text-decoration: underline;
+		}
+	}
+
+	p,
+	time,
+	span {
+		font-weight: 400;
+		font-family: 'Inter', sans-serif;
+		font-size: 0.875rem;
+		line-height: 1.4;
+	}
+
+	p {
+		margin-top: 0.5rem;
+		max-width: 70%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	time {
@@ -66,8 +71,14 @@ export const CardExtraInfo = styled.div`
 	}
 `;
 
+export const CardTitle = styled.h3``;
+
+export const CardExtraInfo = styled.div``;
+
 export const CardPlayButton = styled.button`
-	grid-area: button;
+	position: absolute;
+	right: 1.25rem;
+	bottom: 1.25rem;
 	background: transparent;
 	border: 0;
 	font-size: 0;
@@ -77,6 +88,13 @@ export const CardPlayButton = styled.button`
 	border: 1px solid var(--gray-100);
 	border-radius: 1rem;
 	background: var(--white);
+
+	transition: all 0.4s;
+
+	&:hover {
+		filter: brightness(0.9);
+		border-color: var(--green-500);
+	}
 
 	img {
 		width: 2rem;

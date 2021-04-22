@@ -21,6 +21,11 @@ export const TableContainer = styled.table`
 		width: 5%;
 	}
 
+	th {
+		text-transform: uppercase;
+		color: var(--gray-200);
+	}
+
 	td {
 		font-size: 0.75rem;
 	}
@@ -43,10 +48,18 @@ export const TableContainer = styled.table`
 			height: var(--height-row);
 			width: var(--height-row);
 			object-fit: cover;
+			border-radius: 0.75rem;
 		}
 
-		h3 {
+		a {
+			display: inline-block;
+			font-size: 1rem;
+
 			flex-grow: 1;
+			font-weight: 600;
+			font-family: 'Lexend', sans-serif;
+			color: var(--gray-800);
+			text-decoration: none;
 		}
 	}
 `;

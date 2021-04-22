@@ -7,7 +7,7 @@ export const HeaderContainer = styled.header`
 
 	display: flex;
 
-	height: 6.5rem;
+	height: var(--header-height);
 
 	align-items: center;
 	padding: 2rem 4rem;

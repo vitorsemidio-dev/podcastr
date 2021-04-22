@@ -2,6 +2,9 @@
 
 import { useMemo, FC } from 'react';
 
+import Link from 'next/link';
+import Image from 'next/image';
+
 import {
 	convertSeconds2Hours,
 	formatDateDayMonthYear,
@@ -13,6 +16,7 @@ import {
 	CardContainer,
 	CardThumbnail,
 	CardTitle,
+	CardDetailsContainer,
 	CardExtraInfo,
 	CardPlayButton,
 } from './styles';
@@ -39,15 +43,23 @@ export const Card: FC<CardProps> = ({ episode }) => {
 				src={episode.thumbnail}
 				alt={'Thumb podcast ' + episode.title}
 			/>
-			<CardTitle>{episode.title}</CardTitle>
-			<CardExtraInfo>
-				<p>{episode.members}</p>
-				<time dateTime='2021-20-04'>
-					{currentDate} <span className='dot'></span> {duration}
-				</time>
-			</CardExtraInfo>
+			<CardDetailsContainer>
+				<CardTitle>
+					<Link href={`/episodes/${episode.id}`}>
+						<a>{episode.title}</a>
+					</Link>
+				</CardTitle>
+				<CardExtraInfo>
+					<p>{episode.members}</p>
+					<time dateTime='2021-20-04'>
+						{currentDate} <span className='dot'></span> {duration}
+					</time>
+				</CardExtraInfo>
+			</CardDetailsContainer>
 			<CardPlayButton>
-				<img
+				<Image
+					width={192}
+					height={192}
 					src='/icons/play-green.svg'
 					alt={'Tocar Podcast ' + episode.title}
 				/>

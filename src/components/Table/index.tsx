@@ -1,6 +1,9 @@
 /** @format */
 
 import { useMemo, FC } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { Episode } from '../../models/episode';
 
 import {
@@ -53,8 +56,15 @@ export const Table: FC<TableProps> = ({ episodes }) => {
 							<tr key={id}>
 								<td>
 									<div>
-										<img src={thumbnail} alt={'Thumbnail' + title} />
-										<h3>{title}</h3>
+										<Image
+											width={192}
+											height={192}
+											src={thumbnail}
+											alt={'Thumbnail' + title}
+										/>
+										<Link href={`/episodes/${id}`}>
+											<a>{title}</a>
+										</Link>
 									</div>
 								</td>
 								<td>{members}</td>
