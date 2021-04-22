@@ -1,6 +1,7 @@
 /** @format */
 
-import { FC } from 'react';
+import { FC, useContext } from 'react';
+import { PlayerContext } from '../../contexts/PlayerContext';
 
 import {
 	PlayerContainer,
@@ -11,6 +12,11 @@ import {
 } from './styles';
 
 export const Player: FC = () => {
+	const { currentEpisodeIndex, episodeList } = useContext(PlayerContext);
+
+	const episode =
+		(episodeList.length && episodeList[currentEpisodeIndex]) || null;
+
 	return (
 		<PlayerContainer>
 			<PlayerHeader>
@@ -19,7 +25,11 @@ export const Player: FC = () => {
 			</PlayerHeader>
 
 			<PlayerEmpty>
-				<p>Selecione um Podcast pra ouvir</p>
+				{episode ? (
+					<p>Ouvindo {episode.title}</p>
+				) : (
+					<p>Selecione um Podcast pra ouvir</p>
+				)}
 			</PlayerEmpty>
 
 			<footer className='empty'>

@@ -1,6 +1,6 @@
 /** @format */
 
-import { useMemo, FC } from 'react';
+import { useMemo, FC, useContext } from 'react';
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -20,12 +20,14 @@ import {
 	CardExtraInfo,
 	CardPlayButton,
 } from './styles';
+import { PlayerContext } from '../../contexts/PlayerContext';
 
 interface CardProps {
 	episode: Episode;
 }
 
 export const Card: FC<CardProps> = ({ episode }) => {
+	const { play } = useContext(PlayerContext);
 	const currentDate = useMemo(() => {
 		const publishedDate = new Date(episode.published_at);
 		const date = formatDateDayMonthYear(publishedDate);
@@ -56,7 +58,7 @@ export const Card: FC<CardProps> = ({ episode }) => {
 					</time>
 				</CardExtraInfo>
 			</CardDetailsContainer>
-			<CardPlayButton>
+			<CardPlayButton type='button' onClick={() => play(episode)}>
 				<Image
 					width={192}
 					height={192}
