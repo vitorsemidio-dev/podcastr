@@ -30,6 +30,7 @@ const Episode: FC<EpisodeProps> = ({ episode }) => {
 					</button>
 				</Link>
 				<Image
+					className='border-radius'
 					width={700}
 					height={160}
 					src={episode.thumbnail}

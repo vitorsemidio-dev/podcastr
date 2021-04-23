@@ -37,6 +37,26 @@ export const PlayerHeader = styled.header`
 	}
 `;
 
+export const PlayerCurrentEpisode = styled.div`
+	text-align: center;
+	img {
+		border-radius: 1rem;
+	}
+
+	h3 {
+		color: var(--white);
+		margin-top: 1.5rem;
+		font: 600 1.25rem 'Lexend', sans-serif;
+	}
+
+	p {
+		color: var(--gray-100);
+		opacity: 0.6;
+		line-height: 1.5rem;
+		margin-top: 1rem;
+	}
+`;
+
 export const PlayerEmpty = styled.div`
 	display: flex;
 	place-items: center;
@@ -92,11 +112,26 @@ export const PlayerButtonContainer = styled.div`
 		border: 0;
 		font-size: 0;
 
+		transition: filter 0.2s;
+
+		&:disabled {
+			cursor: default;
+			opacity: 0.6;
+		}
+
+		&:hover:not(:disabled) {
+			filter: brightness(0.75);
+		}
+
 		&.playButton {
 			width: 4rem;
 			height: 4rem;
 			border-radius: 1rem;
 			background: var(--purple-400);
+
+			:hover {
+				filter: brightness(0.95);
+			}
 		}
 	}
 `;

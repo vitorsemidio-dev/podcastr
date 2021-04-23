@@ -1,11 +1,16 @@
 /** @format */
 
 import { FC, useContext } from 'react';
+import Image from 'next/image';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+
 import { PlayerContext } from '../../contexts/PlayerContext';
 
 import {
 	PlayerContainer,
 	PlayerHeader,
+	PlayerCurrentEpisode,
 	PlayerEmpty,
 	PlayerProgressContainer,
 	PlayerButtonContainer,
@@ -24,37 +29,63 @@ export const Player: FC = () => {
 				<strong>Tocando agora</strong>
 			</PlayerHeader>
 
-			<PlayerEmpty>
+			<>
 				{episode ? (
-					<p>Ouvindo {episode.title}</p>
-				) : (
-					<p>Selecione um Podcast pra ouvir</p>
-				)}
-			</PlayerEmpty>
+					<PlayerCurrentEpisode>
+						<Image
+							width={592}
+							height={592}
+							src={episode.thumbnail}
+							objectFit='cover'
+						/>
 
-			<footer className='empty'>
+						<h3>{episode.title}</h3>
+
+						<p>{episode.members}</p>
+					</PlayerCurrentEpisode>
+				) : (
+					<PlayerEmpty>
+						<p>Selecione um Podcast pra ouvir</p>
+					</PlayerEmpty>
+				)}
+			</>
+
+			<footer className={episode ? '' : 'empty'}>
 				<PlayerProgressContainer>
 					<span>00:00</span>
 					<div className='slider'>
-						<div className='emptySlider'></div>
+						{episode ? (
+							<Slider
+								trackStyle={{
+									backgroundColor: '#04d361',
+								}}
+								handleStyle={{
+									borderColor: '#04d361',
+									borderWidth: 4,
+								}}
+								railStyle={{ backgroundColor: '#9f75ff' }}
+							/>
+						) : (
+							<div className='emptySlider'></div>
+						)}
 					</div>
 					<span>00:00</span>
 				</PlayerProgressContainer>
 
 				<PlayerButtonContainer>
-					<button type='button'>
+					<button type='button' disabled={!episode}>
 						<img src='/icons/shuffle.svg' alt='Embaralhar' />
 					</button>
-					<button type='button'>
+					<button type='button' disabled={!episode}>
 						<img src='/icons/play-previous.svg' alt='Tocar Anterior' />
 					</button>
-					<button type='button' className='playButton'>
+					<button type='button' className='playButton' disabled={!episode}>
 						<img src='/icons/play.svg' alt='Tocar' />
 					</button>
-					<button type='button'>
+					<button type='button' disabled={!episode}>
 						<img src='/icons/play-next.svg' alt='Tocar Próxima' />
 					</button>
-					<button type='button'>
+					<button type='button' disabled={!episode}>
 						<img src='/icons/repeat.svg' alt='Repetir' />
 					</button>
 				</PlayerButtonContainer>

@@ -16,8 +16,8 @@ export const CardContainer = styled.div`
 `;
 
 export const CardThumbnail = styled.img`
-	height: 6rem;
-	width: 6rem;
+	height: 7rem;
+	width: 7rem;
 	border-radius: 1rem;
 	object-fit: cover;
 `;
@@ -28,6 +28,7 @@ export const CardDetailsContainer = styled.div`
 
 	a {
 		display: block;
+		width: 80%;
 		color: var(--gray-800);
 		text-decoration: none;
 
@@ -49,11 +50,17 @@ export const CardDetailsContainer = styled.div`
 	}
 
 	p {
-		margin-top: 0.5rem;
+		margin: 0.5rem 0;
 		max-width: 70%;
-		white-space: nowrap;
+	}
+
+	a,
+	p {
 		overflow: hidden;
 		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
 	}
 
 	time {

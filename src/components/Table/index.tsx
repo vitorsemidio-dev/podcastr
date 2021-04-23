@@ -36,6 +36,7 @@ export const Table: FC<TableProps> = ({ episodes }) => {
 			<TableContainer>
 				<thead>
 					<tr>
+						<th></th>
 						<th>Podcast</th>
 						<th>Integrantes</th>
 						<th>Data</th>
@@ -55,17 +56,18 @@ export const Table: FC<TableProps> = ({ episodes }) => {
 						}) => (
 							<tr key={id}>
 								<td>
-									<div>
-										<Image
-											width={192}
-											height={192}
-											src={thumbnail}
-											alt={'Thumbnail' + title}
-										/>
-										<Link href={`/episodes/${id}`}>
-											<a>{title}</a>
-										</Link>
-									</div>
+									<Image
+										width={256}
+										height={256}
+										src={thumbnail}
+										alt={'Thumbnail' + title}
+										objectFit='cover'
+									/>
+								</td>
+								<td>
+									<Link href={`/episodes/${id}`}>
+										<a>{title}</a>
+									</Link>
 								</td>
 								<td>{members}</td>
 								<td>{publishedAtFormatted}</td>

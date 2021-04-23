@@ -14,8 +14,9 @@ export const EpisodeThumbnail = styled.div`
 	margin: 2rem auto;
 	position: relative;
 
-	border-radius: 1rem;
-	/* overflow: hidden; */
+	.border-radius {
+		border-radius: 1rem;
+	}
 
 	button {
 		position: absolute;
