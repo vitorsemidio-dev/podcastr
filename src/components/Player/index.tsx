@@ -1,6 +1,6 @@
 /** @format */
 
-import { FC, useContext } from 'react';
+import { FC, useContext, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -17,10 +17,30 @@ import {
 } from './styles';
 
 export const Player: FC = () => {
-	const { currentEpisodeIndex, episodeList } = useContext(PlayerContext);
+	const {
+		currentEpisodeIndex,
+		episodeList,
+		isPlaying,
+		togglePlay,
+		setPlayingState,
+	} = useContext(PlayerContext);
 
 	const episode =
 		(episodeList.length && episodeList[currentEpisodeIndex]) || null;
+
+	const audioRef = useRef<HTMLAudioElement>(null);
+
+	useEffect(() => {
+		if (!audioRef.current) {
+			return;
+		}
+
+		if (isPlaying) {
+			audioRef.current.play();
+		} else {
+			audioRef.current.pause();
+		}
+	}, [isPlaying]);
 
 	return (
 		<PlayerContainer>
@@ -72,6 +92,16 @@ export const Player: FC = () => {
 					<span>00:00</span>
 				</PlayerProgressContainer>
 
+				{episode && (
+					<audio
+						ref={audioRef}
+						autoPlay
+						src={episode.file.url}
+						onPlay={() => setPlayingState(true)}
+						onPause={() => setPlayingState(false)}
+					/>
+				)}
+
 				<PlayerButtonContainer>
 					<button type='button' disabled={!episode}>
 						<img src='/icons/shuffle.svg' alt='Embaralhar' />
@@ -79,8 +109,16 @@ export const Player: FC = () => {
 					<button type='button' disabled={!episode}>
 						<img src='/icons/play-previous.svg' alt='Tocar Anterior' />
 					</button>
-					<button type='button' className='playButton' disabled={!episode}>
-						<img src='/icons/play.svg' alt='Tocar' />
+					<button
+						type='button'
+						className='playButton'
+						disabled={!episode}
+						onClick={togglePlay}>
+						{isPlaying ? (
+							<img src='/icons/pause.svg' alt='Pausar' />
+						) : (
+							<img src='/icons/play.svg' alt='Tocar' />
+						)}
 					</button>
 					<button type='button' disabled={!episode}>
 						<img src='/icons/play-next.svg' alt='Tocar Próxima' />

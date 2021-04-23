@@ -15,10 +15,20 @@ import { Episode } from '../models/episode';
 export default function MyApp({ Component, pageProps }: AppProps) {
 	const [episodeList, setEpisodeList] = useState<Episode[]>([]);
 	const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(0);
+	const [isPlaying, setIsPlaying] = useState(false);
 
 	const play = (episode: Episode) => {
+		setIsPlaying(true);
 		setEpisodeList([episode]);
 		setCurrentEpisodeIndex(0);
+	};
+
+	const togglePlay = () => {
+		setIsPlaying(!isPlaying);
+	};
+
+	const setPlayingState = (state: boolean) => {
+		setIsPlaying(state);
 	};
 
 	return (
@@ -26,7 +36,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 			value={{
 				episodeList,
 				currentEpisodeIndex,
+				isPlaying,
 				play,
+				togglePlay,
+				setPlayingState,
 			}}>
 			<GlobalStyles />
 
