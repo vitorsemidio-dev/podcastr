@@ -1,11 +1,11 @@
 /** @format */
 
-import { FC, useContext, useRef, useEffect } from 'react';
+import { FC, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import { PlayerContext } from '../../contexts/PlayerContext';
+import { usePlayer } from '../../contexts/PlayerContext';
 
 import {
 	PlayerContainer,
@@ -23,7 +23,7 @@ export const Player: FC = () => {
 		isPlaying,
 		togglePlay,
 		setPlayingState,
-	} = useContext(PlayerContext);
+	} = usePlayer();
 
 	const episode =
 		(episodeList.length && episodeList[currentEpisodeIndex]) || null;

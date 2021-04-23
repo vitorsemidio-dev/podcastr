@@ -1,16 +1,17 @@
 /** @format */
 
-import { useMemo, FC, useContext } from 'react';
+import { useMemo, FC } from 'react';
 
 import Link from 'next/link';
 import Image from 'next/image';
+
+import { usePlayer } from '../../contexts/PlayerContext';
+import { Episode } from '../../models/episode';
 
 import {
 	convertSeconds2Hours,
 	formatDateDayMonthYear,
 } from '../../utils/formatDate';
-
-import { Episode } from '../../models/episode';
 
 import {
 	CardContainer,
@@ -20,14 +21,13 @@ import {
 	CardExtraInfo,
 	CardPlayButton,
 } from './styles';
-import { PlayerContext } from '../../contexts/PlayerContext';
 
 interface CardProps {
 	episode: Episode;
 }
 
 export const Card: FC<CardProps> = ({ episode }) => {
-	const { play } = useContext(PlayerContext);
+	const { play } = usePlayer();
 	const currentDate = useMemo(() => {
 		const publishedDate = new Date(episode.published_at);
 		const date = formatDateDayMonthYear(publishedDate);

@@ -1,6 +1,6 @@
 /** @format */
 
-import { addSeconds, format } from 'date-fns';
+import { format } from 'date-fns';
 import ptBr from 'date-fns/locale/pt-BR';
 
 export function formatDate(date: Date): string {
@@ -19,8 +19,13 @@ export function formatDateDayMonthYear(date: Date): string {
 	return dateFormatted;
 }
 
-export function convertSeconds2Hours(seconds: number) {
-	const begin = new Date(0).setHours(0);
-	const helperDate = addSeconds(begin, seconds);
-	return format(helperDate, 'h:mm:ss');
+export function convertSeconds2Hours(durationInSeconds: number) {
+	const secondsInHour = 3600;
+	const hours = Math.floor(durationInSeconds / secondsInHour);
+	const minutes = Math.floor((durationInSeconds % secondsInHour) / 60);
+	const seconds = Math.floor((durationInSeconds % secondsInHour) / 60);
+
+	return [hours, minutes, seconds]
+		.map((time) => time.toString().padStart(2, '0'))
+		.join(':');
 }
