@@ -16,9 +16,15 @@ import { TableContainer } from './styles';
 
 interface TableProps {
 	episodes: Array<Episode>;
+	beginIndex?: number;
+	onClickPlay: (index: number) => void;
 }
 
-export const Table: FC<TableProps> = ({ episodes }) => {
+export const Table: FC<TableProps> = ({
+	episodes,
+	beginIndex = 0,
+	onClickPlay,
+}) => {
 	const episodesFormatted = useMemo(() => {
 		const episodesHelper = episodes?.map((episode) => {
 			const publishedDate = new Date(episode.published_at);
@@ -46,14 +52,17 @@ export const Table: FC<TableProps> = ({ episodes }) => {
 				</thead>
 				<tbody>
 					{episodesFormatted?.map(
-						({
-							id,
-							members,
-							publishedAtFormatted,
-							durationFormatted,
-							title,
-							thumbnail,
-						}) => (
+						(
+							{
+								id,
+								members,
+								publishedAtFormatted,
+								durationFormatted,
+								title,
+								thumbnail,
+							},
+							index,
+						) => (
 							<tr key={id}>
 								<td>
 									<Image
@@ -73,7 +82,7 @@ export const Table: FC<TableProps> = ({ episodes }) => {
 								<td>{publishedAtFormatted}</td>
 								<td>{durationFormatted}</td>
 								<td>
-									<Button>
+									<Button onClick={() => onClickPlay(beginIndex + index)}>
 										<img
 											src='/icons/play-green.svg'
 											alt={'Tocar Podcast ' + title}

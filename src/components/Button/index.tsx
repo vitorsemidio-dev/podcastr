@@ -4,6 +4,14 @@ import { FC } from 'react';
 
 import { ButtonContainer } from './styles';
 
-export const Button: FC = ({ children }) => {
-	return <ButtonContainer type='button'>{children}</ButtonContainer>;
+interface ButtonProps {
+	onClick: () => void;
+}
+
+export const Button: FC<ButtonProps> = ({ children, onClick }) => {
+	return (
+		<ButtonContainer type='button' onClick={onClick}>
+			{children}
+		</ButtonContainer>
+	);
 };

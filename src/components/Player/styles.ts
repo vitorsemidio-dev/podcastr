@@ -18,10 +18,6 @@ export const PlayerContainer = styled.div`
 
 	footer {
 		align-self: stretch;
-
-		&.empty {
-			opacity: 0.5;
-		}
 	}
 `;
 
@@ -83,9 +79,13 @@ export const PlayerProgressContainer = styled.div`
 	font-size: 0.875rem;
 	gap: 0.5rem;
 
+	&.empty {
+		opacity: 0.5;
+	}
+
 	span {
 		display: inline-block;
-		width: 3rem;
+		width: 4rem;
 		text-align: center;
 	}
 
@@ -113,6 +113,15 @@ export const PlayerButtonContainer = styled.div`
 		font-size: 0;
 
 		transition: filter 0.2s;
+
+		&.active {
+			filter: invert(0.35) sepia(1) saturate(3) hue-rotate(100deg);
+		}
+
+		&.active:hover {
+			filter: brightness(0.6) invert(0.35) sepia(1) saturate(3)
+				hue-rotate(100deg);
+		}
 
 		&:disabled {
 			cursor: default;

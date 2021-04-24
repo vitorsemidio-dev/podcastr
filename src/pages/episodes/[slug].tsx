@@ -8,24 +8,26 @@ import { ParsedUrlQuery } from 'querystring';
 
 import { Episode as EpisodeModel } from '../../models/episode';
 import { api } from '../../services/api';
+import { usePlayer } from '../../contexts/PlayerContext';
 
 import {
 	EpisodeContainer,
+	EpisodeDescription,
 	EpisodeHeader,
 	EpisodeThumbnail,
-	EpisodeDescription,
-} from './styles';
+} from '../../screen/episode';
 
 interface EpisodeProps {
 	episode: EpisodeModel;
 }
 
 const Episode: FC<EpisodeProps> = ({ episode }) => {
+	const { play } = usePlayer();
 	return (
 		<EpisodeContainer>
 			<EpisodeThumbnail>
 				<Link href='/'>
-					<button>
+					<button type='button'>
 						<img src='/icons/arrow-left.svg' alt='Voltar' />
 					</button>
 				</Link>
@@ -38,7 +40,11 @@ const Episode: FC<EpisodeProps> = ({ episode }) => {
 					objectFit='cover'
 				/>
 				<button>
-					<img src='/icons/play.svg' alt='Tocar Podcast' />
+					<img
+						src='/icons/play.svg'
+						alt='Tocar Podcast'
+						onClick={() => play(episode)}
+					/>
 				</button>
 			</EpisodeThumbnail>
 			<EpisodeHeader>

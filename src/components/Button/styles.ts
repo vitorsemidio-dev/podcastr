@@ -3,7 +3,6 @@
 import styled from 'styled-components';
 
 export const ButtonContainer = styled.button`
-	grid-area: button;
 	background: transparent;
 	border: 0;
 	font-size: 0;

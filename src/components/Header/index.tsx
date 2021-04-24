@@ -1,6 +1,7 @@
 /** @format */
 
 import { FC } from 'react';
+import Link from 'next/link';
 
 import { formatDate } from '../../utils/formatDate';
 
@@ -11,7 +12,11 @@ export const Header: FC = () => {
 
 	return (
 		<HeaderContainer>
-			<img src='/icons/logo.svg' alt='Logo Podcastr' />
+			<Link href='/'>
+				<a>
+					<img src='/icons/logo.svg' alt='Logo Podcastr' />
+				</a>
+			</Link>
 			<HeaderText>O melhor para você ouvir, sempre</HeaderText>
 			<HeaderDate>
 				<time dateTime={currentDate}>{currentDate}</time>

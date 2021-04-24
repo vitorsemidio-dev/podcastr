@@ -2,6 +2,7 @@
 
 import { Card } from '../components/Card';
 import { Table } from '../components/Table';
+import { usePlayer } from '../contexts/PlayerContext';
 
 import { Episode } from '../models/episode';
 
@@ -16,13 +17,26 @@ interface HomeProps {
 }
 
 export default function Home({ lastestEpisodes, allEpisodes }: HomeProps) {
+	const { playList } = usePlayer();
+
+	const episodeList = [...lastestEpisodes, ...allEpisodes];
+
+	const handlePlayList = (index: number) => {
+		playList(episodeList, index);
+	};
+
 	return (
 		<HomeWrapper>
 			<section>
 				<h2>Últimos Lançamentos</h2>
 				<ReleaseWrapper>
-					{lastestEpisodes.map((episode) => (
-						<Card key={episode.id} episode={episode} />
+					{lastestEpisodes.map((episode, index) => (
+						<Card
+							key={episode.id}
+							episode={episode}
+							index={index}
+							onPlayClick={handlePlayList}
+						/>
 					))}
 				</ReleaseWrapper>
 			</section>
@@ -30,7 +44,11 @@ export default function Home({ lastestEpisodes, allEpisodes }: HomeProps) {
 			<section>
 				<h2>Todos os Episódios</h2>
 
-				<Table episodes={allEpisodes} />
+				<Table
+					episodes={allEpisodes}
+					onClickPlay={handlePlayList}
+					beginIndex={lastestEpisodes.length}
+				/>
 			</section>
 		</HomeWrapper>
 	);

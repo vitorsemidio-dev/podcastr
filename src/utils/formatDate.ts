@@ -23,7 +23,7 @@ export function convertSeconds2Hours(durationInSeconds: number) {
 	const secondsInHour = 3600;
 	const hours = Math.floor(durationInSeconds / secondsInHour);
 	const minutes = Math.floor((durationInSeconds % secondsInHour) / 60);
-	const seconds = Math.floor((durationInSeconds % secondsInHour) / 60);
+	const seconds = Math.floor((durationInSeconds % secondsInHour) % 60);
 
 	return [hours, minutes, seconds]
 		.map((time) => time.toString().padStart(2, '0'))
