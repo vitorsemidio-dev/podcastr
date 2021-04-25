@@ -14,6 +14,12 @@ export const AppWrapper = styled.div`
 
 	> header {
 		grid-area: headerApp;
+
+		padding: 2rem 4rem;
+
+		@media (max-width: 768px) {
+			padding: 1.5rem 2rem;
+		}
 	}
 
 	> aside {

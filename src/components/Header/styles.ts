@@ -10,7 +10,6 @@ export const HeaderContainer = styled.header`
 
 	display: flex;
 	align-items: center;
-	padding: 2rem 4rem;
 
 	border-bottom: 1px solid var(--gray-100);
 

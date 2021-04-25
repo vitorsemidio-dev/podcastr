@@ -6,6 +6,9 @@ export const EpisodeContainer = styled.div`
 	max-width: 45rem;
 	padding: 3rem 2rem;
 	margin: 0 auto;
+	@media (max-width: 768px) {
+		padding: 1rem 2rem;
+	}
 `;
 
 export const EpisodeThumbnail = styled.div`

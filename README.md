@@ -1,28 +1,51 @@
-# TypeScript & Styled Components Next.js example
+<!-- @format -->
 
-This is a really simple project that show the usage of Next.js with TypeScript and Styled Components.
+<h1 align="center">
+  <img height="200px" src=".github/logo.svg">
+</h1>
 
-## Deploy your own
+## 🔮 Sobre o projeto
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+O Podcastr é uma aplicação web desenvolvida durante o evento **Next Level Week** utilizando Next.js. Nele é possível ouvir seus podcast favoritos.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript-styled-components&project-name=with-typescript-styled-components&repository-name=with-typescript-styled-components)
-
-## How to use it?
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+## 🎲 Como rodar o projeto
 
 ```bash
-npx create-next-app --example with-typescript-styled-components with-typescript-styled-components-app
-# or
-yarn create next-app --example with-typescript-styled-components with-typescript-styled-components-app
+# Clone este repositório
+$ git clone https://github.com/vitorsemidio-dev/podcastr
+
+# Acesse a pasta do projeto no terminal/cmd
+$ cd podcastr
+
+# Instale as dependências
+$ npm install
+
+# Execute o servidor
+$ npm run server
+
+# Execute a aplicação em modo de desenvolvimento
+$ npm run dev
+
+# Acesse o endereço http://localhost:3000
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## 📸 Imagens do Projeto
 
-## Notes
+### Home
 
-This is an amalgamation of the 2 existing examples:
+<img src='./.github/home.png'/>
 
-- [with-typescript](https://github.com/vercel/next.js/tree/canary/examples/with-typescript)
-- [with-styled-components](https://github.com/vercel/next.js/tree/canary/examples/with-styled-components)
+### Detalhe do Episódio
+
+<p align='center'>
+  <img src='./.github/episodio.png'/>
+</p>
+
+## 🛠 Tecnologias
+
+- [Next.js](https://nextjs.org/)
+- [ReactJS](https://pt-br.reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Date fns](https://date-fns.org/)
+- [Styled Components](https://styled-components.com/)
+- [Axios](https://github.com/axios/axios)
