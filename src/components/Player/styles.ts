@@ -2,10 +2,8 @@
 
 import styled from 'styled-components';
 
-export const PlayerContainer = styled.div`
-	width: 26.5rem;
-	min-height: 100vh;
-	height: 100vh;
+export const PlayerContainer = styled.aside`
+	grid-area: player;
 
 	display: flex;
 	flex-direction: column;
@@ -53,6 +51,12 @@ export const PlayerCurrentEpisode = styled.div`
 		line-height: 1.5rem;
 		margin-top: 1rem;
 	}
+
+	@media (max-width: 1080px) {
+		> *:not(.keep-small-screen) {
+			display: none !important;
+		}
+	}
 `;
 
 export const PlayerEmpty = styled.div`
@@ -73,6 +77,10 @@ export const PlayerEmpty = styled.div`
 
 	padding: 4rem;
 	text-align: center;
+
+	@media (max-width: 1080px) {
+		display: none;
+	}
 `;
 
 export const PlayerProgressContainer = styled.div`

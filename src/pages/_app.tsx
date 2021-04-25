@@ -16,8 +16,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 			<GlobalStyles />
 
 			<AppWrapper>
+				<Header />
+
 				<main>
-					<Header />
 					<Component {...pageProps} />
 				</main>
 

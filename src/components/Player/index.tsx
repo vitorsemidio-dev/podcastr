@@ -97,7 +97,7 @@ export const Player: FC = () => {
 							objectFit='cover'
 						/>
 
-						<h3>{episode.title}</h3>
+						<h3 className='keep-small-screen'>{episode.title}</h3>
 
 						<p>{episode.members}</p>
 					</PlayerCurrentEpisode>

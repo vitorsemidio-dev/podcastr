@@ -3,12 +3,12 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
+	grid-area: headerApp;
+
 	background-color: var(--white);
-
-	display: flex;
-
 	height: var(--header-height);
 
+	display: flex;
 	align-items: center;
 	padding: 2rem 4rem;
 
@@ -20,10 +20,14 @@ export const HeaderContainer = styled.header`
 `;
 
 export const HeaderText = styled.p`
-	margin-left: 2rem;
+	margin: 0 2rem;
 	padding: 0.25rem 0 0.25rem 2rem;
 
 	border-left: 2px solid var(--gray-100);
+
+	@media (max-width: 768px) {
+		display: none;
+	}
 `;
 
 export const HeaderDate = styled.span`
