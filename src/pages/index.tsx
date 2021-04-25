@@ -1,5 +1,7 @@
 /** @format */
 
+import Head from 'next/head';
+
 import { Card } from '../components/Card';
 import { Table } from '../components/Table';
 import { usePlayer } from '../contexts/PlayerContext';
@@ -8,8 +10,8 @@ import { Episode } from '../models/episode';
 
 import { api } from '../services/api';
 
-import { HomeWrapper } from '../styles/home-wrapper';
-import { ReleaseWrapper } from '../styles/release-wrapper';
+import { HomeWrapper } from '../styles/wrappers';
+import { ReleaseWrapper } from '../styles/wrappers';
 
 interface HomeProps {
 	lastestEpisodes: Array<Episode>;
@@ -26,31 +28,36 @@ export default function Home({ lastestEpisodes, allEpisodes }: HomeProps) {
 	};
 
 	return (
-		<HomeWrapper>
-			<section>
-				<h2>Últimos Lançamentos</h2>
-				<ReleaseWrapper>
-					{lastestEpisodes.map((episode, index) => (
-						<Card
-							key={episode.id}
-							episode={episode}
-							index={index}
-							onPlayClick={handlePlayList}
-						/>
-					))}
-				</ReleaseWrapper>
-			</section>
+		<>
+			<Head>
+				<title>Home | PodCastr</title>
+			</Head>
+			<HomeWrapper>
+				<section>
+					<h2>Últimos Lançamentos</h2>
+					<ReleaseWrapper>
+						{lastestEpisodes.map((episode, index) => (
+							<Card
+								key={episode.id}
+								episode={episode}
+								index={index}
+								onPlayClick={handlePlayList}
+							/>
+						))}
+					</ReleaseWrapper>
+				</section>
 
-			<section>
-				<h2>Todos os Episódios</h2>
+				<section>
+					<h2>Todos os Episódios</h2>
 
-				<Table
-					episodes={allEpisodes}
-					onClickPlay={handlePlayList}
-					beginIndex={lastestEpisodes.length}
-				/>
-			</section>
-		</HomeWrapper>
+					<Table
+						episodes={allEpisodes}
+						onClickPlay={handlePlayList}
+						beginIndex={lastestEpisodes.length}
+					/>
+				</section>
+			</HomeWrapper>
+		</>
 	);
 }
 

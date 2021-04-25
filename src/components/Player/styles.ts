@@ -18,6 +18,7 @@ export const PlayerContainer = styled.div`
 
 	footer {
 		align-self: stretch;
+		margin-top: 1rem;
 	}
 `;
 
@@ -26,6 +27,7 @@ export const PlayerHeader = styled.header`
 	align-items: center;
 	justify-content: center;
 	gap: 1rem;
+	margin-bottom: 1rem;
 
 	strong {
 		font-family: 'Lexend', sans-serif;

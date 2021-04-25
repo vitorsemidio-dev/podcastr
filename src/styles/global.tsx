@@ -59,7 +59,7 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 768px) {
     html {
       font-size: 87.5%; // 14px
     }
@@ -71,7 +71,11 @@ export const GlobalStyles = createGlobalStyle`
 
   body, input, textarea, button {
     font: 500 1rem 'Inter', sans-serif;
-    color: var(--gray-500)
+    color: var(--gray-500);
+
+    @media (max-width: 768px) {
+      font-size: 0.875rem;
+    }
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -82,10 +86,26 @@ export const GlobalStyles = createGlobalStyle`
 
   h1 {
     font-size: 2rem;
+
+    @media (max-width: 1080px) {
+      font-size: 1.8rem;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
 
   h2 {
     font-size: 1.5rem;
+
+    @media (max-width: 1080px) {
+      font-size: 1.4rem;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+    }
   }
 
   button {

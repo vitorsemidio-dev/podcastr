@@ -1,6 +1,12 @@
 /** @format */
 
-import Document, { DocumentContext } from 'next/document';
+import Document, {
+	DocumentContext,
+	Html,
+	Head,
+	Main,
+	NextScript,
+} from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
@@ -28,5 +34,27 @@ export default class MyDocument extends Document {
 		} finally {
 			sheet.seal();
 		}
+	}
+
+	render() {
+		return (
+			<Html lang='pt-br'>
+				<Head defaultValue='PodCastr'>
+					<link
+						rel='shortcut icon'
+						href='/icons/favicon.png'
+						type='image/png'
+					/>
+					<meta
+						name='keywords'
+						content='Next Level Week 5, nlw5, Next.js, React, Podcastr'
+					/>
+				</Head>
+				<body>
+					<Main />
+					<NextScript />
+				</body>
+			</Html>
+		);
 	}
 }

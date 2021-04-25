@@ -1,14 +1,21 @@
 /** @format */
 
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Link from 'next/link';
+import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ParsedUrlQuery } from 'querystring';
 
 import { Episode as EpisodeModel } from '../../models/episode';
 import { api } from '../../services/api';
 import { usePlayer } from '../../contexts/PlayerContext';
+import {
+	convertSeconds2Hours,
+	formatDateDayMonthYear,
+} from '../../utils/formatDate';
+
+import { EpisodeWrapper } from '../../styles/wrappers';
 
 import {
 	EpisodeContainer,
@@ -23,42 +30,60 @@ interface EpisodeProps {
 
 const Episode: FC<EpisodeProps> = ({ episode }) => {
 	const { play } = usePlayer();
+
+	const durationFormatted = useMemo(() => {
+		const formatted = convertSeconds2Hours(episode.file.duration);
+		return formatted;
+	}, []);
+
+	const publishedAtFormatted = useMemo(() => {
+		const formatted = formatDateDayMonthYear(new Date(episode.published_at));
+		return formatted;
+	}, []);
+
 	return (
-		<EpisodeContainer>
-			<EpisodeThumbnail>
-				<Link href='/'>
-					<button type='button'>
-						<img src='/icons/arrow-left.svg' alt='Voltar' />
-					</button>
-				</Link>
-				<Image
-					className='border-radius'
-					width={700}
-					height={160}
-					src={episode.thumbnail}
-					alt={episode.title}
-					objectFit='cover'
-				/>
-				<button>
-					<img
-						src='/icons/play.svg'
-						alt='Tocar Podcast'
-						onClick={() => play(episode)}
+		<EpisodeWrapper>
+			<Head>
+				<title>{episode.title} | PodCastr</title>
+				<meta name='description' content={episode.description} />
+				<meta name='og:image' content={episode.thumbnail} />
+			</Head>
+			<EpisodeContainer>
+				<EpisodeThumbnail>
+					<Link href='/'>
+						<button type='button'>
+							<img src='/icons/arrow-left.svg' alt='Voltar' />
+						</button>
+					</Link>
+					<Image
+						className='border-radius'
+						width={700}
+						height={160}
+						src={episode.thumbnail}
+						alt={episode.title}
+						objectFit='cover'
 					/>
-				</button>
-			</EpisodeThumbnail>
-			<EpisodeHeader>
-				<h1>{episode.title}</h1>
+					<button>
+						<img
+							src='/icons/play.svg'
+							alt='Tocar Podcast'
+							onClick={() => play(episode)}
+						/>
+					</button>
+				</EpisodeThumbnail>
+				<EpisodeHeader>
+					<h1>{episode.title}</h1>
 
-				<span>{episode.members}</span>
-				<span>{episode.published_at}</span>
-				<span>{episode.file.duration}</span>
-			</EpisodeHeader>
+					<span>{episode.members}</span>
+					<span>{publishedAtFormatted}</span>
+					<span>{durationFormatted}</span>
+				</EpisodeHeader>
 
-			<EpisodeDescription
-				dangerouslySetInnerHTML={{ __html: episode.description }}
-			/>
-		</EpisodeContainer>
+				<EpisodeDescription
+					dangerouslySetInnerHTML={{ __html: episode.description }}
+				/>
+			</EpisodeContainer>
+		</EpisodeWrapper>
 	);
 };
 

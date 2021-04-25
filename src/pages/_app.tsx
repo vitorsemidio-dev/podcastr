@@ -6,7 +6,7 @@ import { Header } from '../components/Header';
 import { Player } from '../components/Player';
 
 import { GlobalStyles } from '../styles/global';
-import { AppWrapper } from '../styles/app-wrapper';
+import { AppWrapper } from '../styles/wrappers';
 
 import { PlayerContextProvider } from '../contexts/PlayerContext';
 
